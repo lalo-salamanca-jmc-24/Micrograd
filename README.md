@@ -1,8 +1,6 @@
 # Micrograd - Autograd Engine
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Graphviz](https://img.shields.io/badge/Graphviz-000000?style=for-the-badge&logo=graphviz&logoColor=white)
-![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
 
 ---
 
@@ -23,8 +21,8 @@
 Micrograd/
 ├── engine.py          # Core Value class with autograd
 ├── nn.py              # Neural network components (Neuron, Layer, MLP)
-├── micrograd.ipynb    # Interactive notebook with visualizations
-└── Digraph.gv         # Graphviz output file
+├── requirements.txt   # Project dependencies
+└── README.md          # Documentation
 ```
 
 ---
@@ -60,48 +58,38 @@ print(a.grad)      # ∂c/∂a
 
 Built on top of the autograd engine:
 
-| Class    | Description                                         |
-| -------- | --------------------------------------------------- |
-| `Neuron` | Single neuron with weights, bias, and optional ReLU |
-| `Layer`  | Collection of neurons (fully connected layer)       |
-| `MLP`    | Multi-Layer Perceptron (stacked layers)             |
+| Class    | Description                                              |
+| -------- | -------------------------------------------------------- |
+| `Module` | Base class with `zero_grad()` and `parameters()` methods |
+| `Neuron` | Single neuron with weights, bias, and optional ReLU      |
+| `Layer`  | Collection of neurons (fully connected layer)            |
+| `MLP`    | Multi-Layer Perceptron (stacked layers)                  |
 
 ```python
 from nn import MLP
 
-# 2-layer MLP: 3 inputs → 4 hidden → 1 output
-model = MLP(3, [4, 1])
-x = [Value(1.0), Value(2.0), Value(3.0)]
+# 3-layer MLP: 3 inputs → 4 hidden → 4 hidden → 1 output
+model = MLP(3, [4, 4, 1])
+x = [2.0, 3.0, -1.0]
 output = model(x)
 ```
 
----
+**Run the built-in test:**
 
-## Visualization
-
-The notebook includes computational graph visualization using Graphviz:
-
-```
-       a ──┐
-           ├──[*]── d ──┐
-       b ──┘            ├──[+]── e ──[/]── L
-       f ──────────────┘         c ──┘
+```bash
+python nn.py
 ```
 
-Each node displays:
-
-- Variable label
-- Current value (`data`)
-- Computed gradient (`grad`)
+This demonstrates forward pass, loss computation, and backpropagation with gradient printing.
 
 ---
 
 ## Getting Started
 
-### Prerequisites
+### Installation
 
 ```bash
-pip install graphviz
+pip install -r requirements.txt
 ```
 
 ### Usage
@@ -134,8 +122,6 @@ print(f"∂z/∂y = {y.grad}")  # ∂z/∂y = 2.0 (x)
 ## Tech Stack
 
 - **Python 3.8+**
-- **Graphviz** (for computation graph visualization)
-- **Jupyter Notebook** (for interactive exploration)
 
 ---
 
