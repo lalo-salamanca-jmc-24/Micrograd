@@ -1,0 +1,39 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Environment
+.env
+.venv/
+env/
+venv/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Model files (optional - uncomment if you want to exclude large model files)
+# *.h5
+# *.pkl
+# *.joblib
+
+# Data files (keep tracked but ignore large ones if needed)
+# *.csv
+
+# Logs
+*.log
+
+# Graphviz output
+*.gv
+*.pdf.gv
